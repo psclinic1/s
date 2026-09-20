@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" manifest="cache.appcache">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PSClinic - Jailbreak Host</title>
+<style>
+  :root {
+    --bg-color: #080a0f;
+    --card-bg: rgba(18, 24, 38, 0.85);
+    --accent-blue: #0072ce;
+    --accent-glow: #00f0ff;
+    --text-main: #f0f4f8;
+    --text-muted: #8a99ad;
+    --ok-color: #00ff88;
+    --bad-color: #ff4757;
+    --warn-color: #ffa500;
+  }
+
+  * {
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: 
+      radial-gradient(circle at 15% 20%, rgba(0, 114, 206, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 40%);
+    overflow: hidden;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 480px;
+    background: var(--card-bg);
+    border: 1px solid rgba(0, 240, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5),
+                0 0 20px rgba(0, 114, 206, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    position: relative;
+  }
+
+  /* Header / Brand */
+  #brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  #brand img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-glow);
+    box-shadow: 0 0 10px var(--accent-glow);
+    object-fit: cover;
+  }
+
+  #brand b {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+
+  #brand span.clinic-tag {
+    color: var(--accent-glow);
+  }
+
+  /* State & Status */
+  #state {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 15px 0 10px;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+  }
+
+  #det {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: inline-block;
+  }
+
+  #det b {
+    color: var(--accent-glow);
+    font-weight: 600;
+  }
+
+  #cache {
+    font-size: 13px;
+    color: var(--text-muted);
+    min-height: 20px;
+    margin-top: 10px;
+    font-weight: 500;
+  }
+
+  /* Status Colors */
+  .ok, #cache.cacheok { color: var(--ok-color) !important; text-shadow: 0 0 8px rgba(0, 255, 136, 0.3); }
+  .bad { color: var(--bad-color) !important; text-shadow: 0 0 8px rgba(255, 71, 87, 0.3); }
+  .warn { color: var(--warn-color) !important; text-shadow: 0 0 8px rgba(255, 165, 0, 0.3); }
+
+  /* Interactive Pulse Effect for Action */
+  .pulse {
+    animation: pulse-animation 1.5s infinite;
+  }
+
+  @keyframes pulse-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+
+  /* PS Buttons Decor */
+  .ps-shapes {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.1);
+    letter-spacing: 6px;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="container pulse">
+  <div id="brand">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAA3tUlEQVR42t29d5xV5bn3/b3v1XaZmT3MDG2Gjoo0KQJSREHAEvuJYowxia9503NSjq9PmtEkGp9TzJNzTo6aclLURANJNBELIgIqVRAQkI44Q2f67LLqfb9/7L3HYZiBQUly8uzPZ39mZs1ea691XffVfle5BX/Dl9ZaAhKIhBC6eFwIgVJqYBiGI48cOTI6Foudb9v2kCiKqtva2ipbWlpKwjCMKaVMIQSGYYSGYbi+76czmUxDNps95Pv+/ubm5h1tbW3bGhsbt99zzz11nb5bLF++3Fi+fLn67ne/q/5WNBB/A6KLAtG1EEJ1OD44l8tN9zzv0kwmMymKonOAVBAEKKUIwxClFFEUEYYhWut2ZhWYgGVZaK2Jon...=" alt="PSClinic Logo">
+    <b>PS<span class="clinic-tag">CLINIC</span></b>
+  </div>
+
+  <div id="wrap">
+    <div id="state">Detecting Firmware...</div>
+    <div id="det"></div>
+    <div id="cache"></div>
+  </div>
+
+  <div class="ps-shapes">△ ◯ ✕ ▢</div>
+</div>
+
+<script>
+(function () {
+    var stateEl = document.getElementById("state");
+    var detEl = document.getElementById("det");
+    var cacheEl = document.getElementById("cache");
+    function setState(t, c) { stateEl.textContent = t; stateEl.className = c || ""; }
+    function setCache(t, ok) { cacheEl.textContent = t; cacheEl.className = ok ? "cacheok" : ""; }
+    var params = new URLSearchParams(location.search);
+
+    var SUPPORTED = { 1302: 1, 1304: 1, 1350: 1, 1352: 1 };
+
+    var key = null, fwnum = null;
+    var m = /PlayStation\s+4[\/ ](\d+)\.(\d+)/.exec(navigator.userAgent);
+    if (m) {
+        var ms = parseInt(m[2], 16).toString(16);
+        if (ms.length < 2) ms = "0" + ms;
+        key = m[1] + "." + ms;
+        fwnum = parseInt(m[1], 10) * 100 + parseInt(ms, 10);
+    }
+
+    var forced = params.get("force") === "1";
+    var supported = forced || (fwnum !== null && SUPPORTED[fwnum] === 1);
+    detEl.innerHTML = "Firmware: <b>" + (key || "Unknown") + "</b>"
+        + (supported ? " &middot; <b>Supported</b>"
+                     : " &middot; Not In Kernel Table");
+
+    var target = "jb.html" + location.search;
+    function go() { setState("Loading Jailbreak...", "warn"); location.replace(target); }
+
+    function waitForTap(msg, action) {
+        setState(msg, "warn");
+        function fire() {
+            window.removeEventListener("click", fire);
+            window.removeEventListener("keydown", fire);
+            action();
+        }
+        window.addEventListener("click", fire);
+        window.addEventListener("keydown", fire);
+    }
+
+    if (!supported) {
+        setState("UNSUPPORTED FIRMWARE", "bad");
+        waitForTap("UNSUPPORTED (" + (key || "unknown") + ") -- Press X or Tap to run anyway", go);
+        return;
+    }
+
+    var ac = window.applicationCache;
+    if (!ac || !document.documentElement.hasAttribute("manifest")) {
+        go();
+    } else if (!navigator.onLine) {
+        setCache("Offline -- Loaded from cache", true);
+        go();
+    } else if (ac.status === ac.IDLE) {
+        setCache("Cached", true);
+        go();
+    } else if (ac.status === ac.UPDATEREADY) {
+        try { ac.swapCache(); } catch (e) {}
+        setCache("Update Downloaded", true);
+        waitForTap("UPDATE READY -- Press X or Tap to reload & run",
+                   function () { location.reload(); });
+    } else {
+        setCache("Checking Cache...");
+        ac.addEventListener("downloading",
+            function () { setCache("Caching for offline (first run)..."); }, false);
+        ac.addEventListener("progress", function (e) {
+            if (e && e.total)
+                setCache("Caching: " + Math.round((e.loaded / e.total) * 100) + "%");
+        }, false);
+        ac.addEventListener("cached", function () {
+            setCache("Cached for offline use", true);
+            waitForTap("CACHED -- Press X or Tap to run", go);
+        }, false);
+        ac.addEventListener("updateready", function () {
+            try { ac.swapCache(); } catch (e) {}
+            setCache("Update Downloaded", true);
+            waitForTap("UPDATE READY -- Press X or Tap to reload & run",
+                       function () { location.reload(); });
+        }, false);
+        ac.addEventListener("noupdate", function () {
+            setCache("Cached -- Offline Ready", true);
+            go();
+        }, false);
+        ac.addEventListener("error", function () {
+            setCache("Cache Unavailable");
+            waitForTap("CACHE FAILED -- Press X or Tap to run anyway", go);
+        }, false);
+        ac.addEventListener("obsolete", function () {
+            setCache("Cache Obsolete");
+            waitForTap("CACHE OBSOLETE -- Press X or Tap to run", go);
+        }, false);
+    }
+})();
+</script>
+</body>
+</html>
